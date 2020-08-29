@@ -44,10 +44,10 @@ public class Parser {
                 try {
                     this.currentDoc3 = Jsoup.connect(this.baseURL + "/page/3/").get();
                 } catch (IOException e) {
-
+                    System.out.println("Could not find username");
                 }
             } catch (IOException e) {
-
+                System.out.println("Could not find username");
             }
         } catch (IOException e) {
             System.out.println("Could not find username");
@@ -95,26 +95,25 @@ public class Parser {
             }
         }
         clean();
-
     }
 
     /*
      * Cleaning the scrap with unecessary material like the heading text
      * 
-     * input: none output: none
+     * input: none 
+     * output: none
      */
     public void clean() {
         collection = new LinkedList<String>();
         collection.add("\"24\"");
-
     }
 
     /*
      * filtering the text without the usernames of friends
      * 
-     * input: text to check output: none
+     * input: text to check 
+     * output: none
      */
-
     public boolean filter(String x) {
         boolean temp = true;
         // if the text to check is in the collection
@@ -124,13 +123,10 @@ public class Parser {
                 temp = false;
             }
         }
-
         if (textToCheck.contains(x)) {
             temp = false;
         }
-
         return temp;
-
     }
 
     public void getMovies() {
@@ -167,7 +163,6 @@ public class Parser {
                 } else if (!vector.containsKey(parsed)) {
                     vector.put(parsed, 1);
                 }
-
             }
         }
     }
@@ -175,7 +170,8 @@ public class Parser {
     /*
      * returns the highest values in the vector map
      * 
-     * input: text to check output: none
+     * input: text to check 
+     * output: none
      */
     public List<String> getHighest(int highest) {
         // list all movies in descending recommendation order
@@ -195,13 +191,10 @@ public class Parser {
                 }
             }
         }
-
         for (int i = 0; i < highest; i++) {
             topPicks.add(descendingList.get(i));
         }
-
         System.out.println(topPicks);
-
         return topPicks;
     }
 
